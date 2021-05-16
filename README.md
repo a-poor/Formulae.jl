@@ -26,5 +26,10 @@ julia> x.value = 5
 
 julia> getval(x), getval(y), getval(f)
 (5, 3, 25)
+
+julia> update!(f, Dict("x"=>2,"y"=>4))
+
+julia> getval(x), getval(y), getval(f)
+(2, 4, 12)
 ```
 
