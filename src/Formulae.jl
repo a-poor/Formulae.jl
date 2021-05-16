@@ -1,8 +1,5 @@
 
 #=
-* Overload `display`
-* Overload `[+,-,*,/,^]` for `AbstractValue`s
-* Update variable values in `Operation`s
 * Create `Formula`, set one side equal to another 
 =#
 
@@ -17,7 +14,7 @@ export
     UnaryOperator, BinaryOperator,
     UnaryOperation, BinaryOperation,
     Negate, Add, Subtract, Multiply, Divide,
-    getval,
+    getval, update!,
     +, -, *, /, ^, display, string
 
 abstract type AbstractValue end
@@ -185,19 +182,19 @@ function getval(o::BinaryOperation)
 end
 
 
-function update!(v::Variable, data::Dict{String,Number})
+function update!(v::Variable, data::Dict{String,<:Number})
     if v.name in keys(data)
         v.value = data[v.name]
     end
     nothing
 end
 
-function update!(o::UnaryOperation, data::Dict{String,Number})
+function update!(o::UnaryOperation, data::Dict{String,<:Number})
     update!(o.arg, data)
     nothing
 end
 
-function update!(o::BinaryOperation, data::Dict{String,Number})
+function update!(o::BinaryOperation, data::Dict{String,<:Number})
     update!(o.left, data)
     update!(o.right, data)
     nothing
