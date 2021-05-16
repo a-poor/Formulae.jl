@@ -182,8 +182,8 @@ function getval(o::BinaryOperation)
 end
 
 
-function update!(v::Variable, data::Dict{String,<:Number})
-    if v.name in keys(data)
+function update!(v::AbstractValue, data::Dict{String,<:Number})
+    if v isa Variable && v.name in keys(data)
         v.value = data[v.name]
     end
     nothing
