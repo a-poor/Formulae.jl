@@ -1,11 +1,4 @@
-
-#=
-* Create `Formula`, set one side equal to another 
-=#
-
-
 module Formulae
-
 
 import Base: +, -, *, /, ^, display, string
 
